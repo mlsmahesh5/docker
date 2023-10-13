@@ -1,6 +1,6 @@
 ---
 - name: Installing docker 
-  hosts: 35.188.199.240 
+  hosts: host_ip 
   become: yes 
 
   tasks:
