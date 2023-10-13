@@ -1,0 +1,32 @@
+---
+- name: Installing docker 
+  hosts: 35.188.199.240 
+  become: yes 
+
+  tasks:
+    - name: Install docker on ubuntu
+      ansible.builtin.apt:
+        name: docker.io
+        state: present
+      become: yes 
+
+    - name: Copy Dockerfile to target server
+      ansible.builtin.copy:
+        src: Dockerfile
+        dest: /home/mahesh/docker
+      become: yes
+        
+    - name: Copy index file to target server
+      ansible.builtin.copy:
+        src: index.html
+        dest: /home/mahesh/docker
+      become: yes
+      notify:
+        - Restart docker 
+
+  handlers:
+    - name: Restart docker
+      ansible.builtin.service:
+        name: docker
+        state: restarted
+      become: yes 

@@ -1,0 +1,39 @@
+
+1. Docker Run: 
+Pull and run a Docker image of an Nginx web server. 
+docker pull nginx
+docker run  -d nginx
+
+Run a container with a specific name and assign it a custom network. 
+docker network create  mahesh-net
+docker run -d --name nginx-custom --network mahesh-net  nginx
+
+Run a container in detached mode (background) and expose ports. 
+docker run -d --name nginx-detach  -p 8080:80 nginx
+
+2. Docker Stop: 
+Stop a running container by its name or ID. 
+docker stop nginx-custom
+
+Stop all running containers on your system. 
+docker stop $(docker ps -q)
+
+Gracefully stop a container by sending a stop signal. 
+docker stop  nginx
+
+
+3. Docker Start: 
+Start a previously stopped container by its name or ID. 
+docker start nginx
+ 
+Restart a container automatically if it fails. 
+docker run --restart=on-failure nginx
+
+
+4. Port Binding: 
+Bind a container's port to a specific port on the host machine. 
+docker run -p 8080:80 nginx
+
+Bind a container's port to a random port on the host machine. 
+docker run -d  -P nginx
+
